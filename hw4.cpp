@@ -5,6 +5,7 @@
 #include "Car.h"
 #include "Plane.h"
 #include "Rocket.h"
+
 using namespace std;
 void setEngine(Engine &engine, string engineManufacturer, string engineType, double power, int rpm)
 {
@@ -25,7 +26,7 @@ void readCars(Car *cars, ifstream &inFile, int numOfCars)
 	string engineManu;
 	double power;
 	int rpm;
-	int topSpeed;
+	double topSpeed;
 	string color;
 	int numOfDoors;
 	double mileage;
@@ -38,6 +39,7 @@ void readCars(Car *cars, ifstream &inFile, int numOfCars)
 		Engine carEngine;
 		setEngine(carEngine, engineManu, engineType, power, rpm);
 		cars[i] = Car(numOfDoors, carManu, carModel, color, mileage, maxPassengers, numOfWheels, topSpeed, &carEngine);
+		
 	}
 
 	inFile.close();
@@ -55,7 +57,7 @@ void readPlanes(Plane *planes, ifstream &inFile, int numOfPlanes)
 	string pEngineManu;
 	double pPower;
 	int pRpm;
-	int pTopSpeed;
+	double pTopSpeed;
 	int pNumOfWheels;
 	double wingSpan;
 	string pType;
@@ -80,7 +82,7 @@ void readRockets(Rocket *rockets, ifstream &inFile, int numOfRockets)
 	string rEngineManu;
 	double rPower;
 	int rRpm;
-	int rTopSpeed;
+	double rTopSpeed;
 	int rNumOfWheels;
 	bool selfLanding;
 	double cargoLimit;
@@ -101,39 +103,90 @@ void readRockets(Rocket *rockets, ifstream &inFile, int numOfRockets)
 // You are ALLOWED to use standard Array syntax or Pointer
 void printVehicles(Vehicle **vehicles, Car *cars, Plane* planes, Rocket* rockets, int numOfTypes[3])
 {
-	vehicles = new Vehicle*[3];
-	for (int i = 0; i < 3; i++)
+	//delete[] vehicles;
+	//vehicles[0] = cars;
+	/*for (int i = 0; i < numOfTypes[0]; i++)
 	{
-		vehicles[i] = new Vehicle[numOfTypes[0]+numOfTypes[1]+numOfTypes[2]];
-	}
-
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < numOfTypes[0] + numOfTypes[1] + numOfTypes[2]; j++)
-		{
-			vehicles[i][j].print();
-		}
-	}
+		vehicles[0] = &cars[i];
+		vehicles[0][i].print();
+	}*/
+	
+	
+	
+	/*Vehicle **rewind;
+	rewind = vehicles;
+	int arraySize = 0;
 
 	for (int i = 0; i < numOfTypes[0]; i++)
 	{
-		cars[i].print();
+		vehicles[i] = &cars[i];
 	}
+
+	arraySize += numOfTypes[0];
 
 	for (int i = 0; i < numOfTypes[1]; i++)
 	{
-		planes[i].print();
+		vehicles[arraySize + i] = &planes[i];
 	}
+
+	arraySize += numOfTypes[1];
 
 	for (int i = 0; i < numOfTypes[2]; i++)
 	{
-		rockets[i].print();
+		vehicles[arraySize + i] = &rockets[i];
+	}
+
+	arraySize += numOfTypes[2];
+	
+	
+
+	for (int i = 0; i < arraySize; i++)
+	{
+		vehicles[i]->print();
+	}
+	
+	vehicles = rewind;*/
+
+	vehicles[0] = cars;
+	vehicles[1] = planes;
+	vehicles[2] = rockets;
+	
+	
+	string *allVehicles = new string[3];
+	string *rewind2;
+	rewind2 = allVehicles;
+	*allVehicles = "Car";
+	allVehicles++;
+	*allVehicles = "Plane";
+	allVehicles++;
+	*allVehicles = "Rocket";
+
+	allVehicles = rewind2;
+
+	cout << "- Total number of vehicles = " << numOfTypes[0] + numOfTypes[1] + numOfTypes[2] << endl;
+
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "+ " << allVehicles[i] << " = " << numOfTypes[i] << endl;
+
+		for (int j = 0; j < numOfTypes[i]; j++)
+		{
+			cout << allVehicles[i] << " " << j + 1 << ":" << endl;
+			vehicles[i][j].print();
+			
+		}
 	}
 
 
-	
+	allVehicles = rewind2;
+
 	
 
+	
+
+
+
+	
 	// Your code goes here. Use polymorphism to call print() from child class
 	// 0 points if not followed
 }
@@ -165,11 +218,7 @@ int main(int argc, char* argv[])
 	}
 
 	// Put three attributes into object of type Engine
-	Engine vehicleEngine;
-	vehicleEngine.engineManufacturer;
-	vehicleEngine.engineType;
-	vehicleEngine.power;
-	vehicleEngine.rpm;
+	
 	// Call function(s) to read the input file
 	readCars(cars, inFile, numOfCars);
 	readPlanes(planes, inFile, numOfPlanes);
@@ -177,7 +226,7 @@ int main(int argc, char* argv[])
 	// Create double pointer vehicle to store all vehicle types
 	Vehicle **vehicles = new Vehicle *[3];
 	// Print function will be called from child class (not Base Class)
-	cout << "- Total number of vehicles = " << numOfTypes[0] + numOfTypes[1] + numOfTypes[2];
+	
 	printVehicles(vehicles, cars, planes, rockets, numOfTypes);
 	// Clean up new memory allocation after using
 	deleteVehicles(vehicles, cars, planes, rockets);

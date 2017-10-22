@@ -1,5 +1,6 @@
 #include <iostream>
-#include "Vehicle.h"
+#include <string>
+
 #include "Plane.h"
 using namespace std;
 
@@ -11,16 +12,17 @@ Plane::Plane()
 	businessType = "";
 	numOfEngines = 0;
 	maxOccupancy = 0;
+	Vehicle();
 }
 
-Plane::Plane(double ws, string pType, string bizType, int noEngines, int maxO, int rPm, double pOwer, Engine* attributes)
+Plane::Plane(double ws, string pType, string bizType, int noEngines, int maxO, int numOFWheels, double tOPsPeed, Engine* attributes)
 {
 	wingspan = ws;
 	planeType = pType;
 	businessType = bizType;
 	numOfEngines = noEngines;
 	maxOccupancy = maxO;
-	Vehicle(rPm, pOwer, attributes);
+	Vehicle(numOFWheels, tOPsPeed, attributes);
 }
 void Plane::setWingspan(double a)
 {
@@ -64,7 +66,7 @@ int Plane::getMaxOccupancy()
 }
 void Plane::print()
 {
-	cout << wingspan << planeType << businessType << numOfEngines << maxOccupancy << type.engineManufacturer << type.engineType << type.power << type.rpm << endl;
+	
 }
 Plane::~Plane()
 {

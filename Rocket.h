@@ -1,3 +1,5 @@
+#ifndef ROCKET_H
+#define ROCKET_H
 #include "Vehicle.h"
 class Rocket : public Vehicle
 {
@@ -17,3 +19,4 @@ public:
 	bool getIsSelfLanding();
 	void print();
 };
+#endif

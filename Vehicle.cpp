@@ -1,4 +1,5 @@
 #include<iostream>
+#include <string>
 #include "Vehicle.h"
 using namespace std;
 
@@ -49,8 +50,12 @@ Engine Vehicle::getEngine()
 
 void Vehicle::print()
 {
+	cout << "\tEngine Type : " << type.engineType << endl;
+	cout << "\tEngine Manufacturer : " << type.engineManufacturer << endl;
+	cout << "\tPower : " << type.power << endl;
+	cout << "\tTop Speed : " << topSpeed << endl;
+	cout << "\tNumber of Wheels : " << numOfWheels << endl;
 	
-	cout << numOfWheels << topSpeed << type.engineManufacturer << type.engineType << type.power << type.rpm << endl;
 }
 
 Vehicle::~Vehicle()

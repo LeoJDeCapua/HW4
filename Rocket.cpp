@@ -1,5 +1,5 @@
 #include<iostream>
-#include "Vehicle.h"
+
 #include "Rocket.h"
 using namespace std;
 
@@ -8,13 +8,14 @@ Rocket::Rocket()
 	cargoLimit = 0.0;
 	numOfEngines = 0;
 	isSelfLanding = false;
+	Vehicle();
 }
-Rocket::Rocket(double cL, int numEngines, bool sL, int rPm, double pOwer, Engine* attributes)
+Rocket::Rocket(double cL, int numEngines, bool sL, int numOFWheels, double tOPsPeed, Engine* attributes)
 {
 	cargoLimit = cL;
 	numOfEngines = numEngines;
 	isSelfLanding = sL;
-	Vehicle(rPm, pOwer, attributes);
+	Vehicle(numOFWheels, tOPsPeed, attributes);
 }
 void Rocket::setCargoLimit(double a)
 {
@@ -42,7 +43,7 @@ bool Rocket::getIsSelfLanding()
 }
 void Rocket::print()
 {
-	cout << cargoLimit << numOfEngines << isSelfLanding << type.engineManufacturer << type.engineType << type.power << type.rpm << endl;
+	
 }
 Rocket::~Rocket()
 {

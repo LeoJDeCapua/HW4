@@ -1,7 +1,9 @@
+#ifndef CAR_H
+#define CAR_H
 #include <string>
 #include "Vehicle.h"
 using namespace std;
-class Car : public Vehicle 
+class Car : public Vehicle
 {
 private:
 	int numOfDoors, maxPassengers;
@@ -25,4 +27,5 @@ public:
 	int getMaxPassengers();
 	void print();
 };
+#endif
 

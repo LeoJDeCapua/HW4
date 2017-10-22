@@ -1,3 +1,5 @@
+#ifndef PLANE_H
+#define PLANE_H
 #include <string>
 #include "Vehicle.h"
 using namespace std;
@@ -23,4 +25,5 @@ public:
 	int getMaxOccupancy();
 	void print();
 };
+#endif
 

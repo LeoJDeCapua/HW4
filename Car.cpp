@@ -1,6 +1,7 @@
 #include<iostream>
+#include <string>
 #include "Car.h"
-#include "Vehicle.h"
+
 using namespace std;
 
 Car::Car()
@@ -11,17 +12,20 @@ Car::Car()
 	model = "";
 	color = "";
 	mileage = 0.0;
+	Vehicle();
+	
 }
 
-Car::Car(int doors, string manufact, string mOdel, string cOlor, double mIleage, int maXPassengers, int rPm, double pOwer, Engine* attributes)
+Car::Car(int doors, string manufact, string mOdel, string cOlor, double mIleage, int maXPassengers, int numOFWheels, double tOPsPeed, Engine* attributes)
 {
+	
 	numOfDoors = doors;
 	manufacturer = manufact;
 	model = mOdel;
 	color = cOlor;
 	mileage = mIleage;
 	maxPassengers = maXPassengers;
-	Vehicle(rPm,pOwer,attributes);
+	Vehicle(numOFWheels, tOPsPeed, attributes);
 }
 
 void Car::setNumOfDoors(int a)
@@ -75,7 +79,13 @@ int Car::getMaxPassengers()
 }
 void Car::print()
 {
-	cout << numOfDoors << manufacturer << model << color << mileage << maxPassengers << type.engineManufacturer << type.engineType << type.power << type.rpm << endl;
+	cout << "\tManufacturer : " << manufacturer << endl;
+	cout << "\tModel : " << model << endl;
+	Vehicle::print();
+	cout << "\tColor : " << color << endl;
+	cout << "\tNumber of Doors : " << numOfDoors << endl;
+	cout << "\tMax Passengers : " << maxPassengers << endl;
+	cout << "\tMileage : " << mileage << endl;
 }
 
 Car::~Car()
